@@ -2,11 +2,16 @@
 import Input from '@/components/Input'
 import { useState } from 'react'
 import Button from '@/components/Button'
+import { useUser } from '@/context/UserContext'
+import { useRouter } from 'next/navigation'
 
 function Page() {
+  const { user, setUser } = useUser()
+  const router = useRouter()
   const [phone, setPhone] = useState('')
   const [error, setError] = useState('Phone number is required')
   const [hasLoggedIn, setHasLoggedIn] = useState(false)
+  console.log('user', user)
 
   function handleValidation(value: string) {
     const isValid = /^9\d{9}$/.test(value)
@@ -29,9 +34,27 @@ function Page() {
   const handleSubmit = async () => {
     setHasLoggedIn(true)
     if (error) {
-      setError('you need to  enter a valid Iranian phone number to continue!')
+      setError('you need to enter a valid Iranian phone number to continue!')
       return
-    } else {
+    }
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone }),
+      })
+
+      if (!res.ok) {
+        const { error } = await res.json()
+        setError(error || 'Something went wrong')
+        return
+      }
+      const user = await res.json()
+      localStorage.setItem('user', JSON.stringify(user))
+      setUser(user)
+      router.push('/dashboard')
+    } catch (e) {
+      setError(`Login failed. ${e}`)
     }
   }
 

@@ -1,26 +1,27 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import {dirname} from "path";
+import {fileURLToPath} from "url";
+import {FlatCompat} from "@eslint/eslintrc";
+import prettierPlugin from 'eslint-plugin-prettier'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+    baseDirectory: __dirname,
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  // Prettier config to disable conflicting rules
-  {
-    name: 'prettier-integration',
-    plugins: {
-      prettier: require('eslint-plugin-prettier'),
+    ...compat.extends("next/core-web-vitals", "next/typescript"),
+    // Prettier config to disable conflicting rules
+    {
+        name: 'prettier-integration',
+        plugins: {
+            prettier: prettierPlugin
+        },
+        rules: {
+            'prettier/prettier': 'error',
+        },
     },
-    rules: {
-      'prettier/prettier': 'error',
-    },
-  },
 ];
 
 export default eslintConfig;
