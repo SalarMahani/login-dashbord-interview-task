@@ -1,7 +1,7 @@
 export const metadata = {
   title: {
-    template:"home/ %s ",
-    default:"home"
+    template: 'home/ %s ',
+    default: 'home',
   },
   description: 'an app for testing the skills of a frontend developer.',
 }
