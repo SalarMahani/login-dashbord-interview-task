@@ -1,6 +1,9 @@
 export const metadata = {
-  title: 'Login page',
-  description: 'Simple login page',
+  title: {
+    template:"home/ %s ",
+    default:"home"
+  },
+  description: 'an app for testing the skills of a frontend developer.',
 }
 
 export default function RootLayout({
