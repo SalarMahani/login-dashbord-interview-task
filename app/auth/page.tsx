@@ -5,6 +5,8 @@ import Button from '@/components/Button'
 import { useUser } from '@/context/UserContext'
 import { useRouter } from 'next/navigation'
 import styles from './page.module.scss'
+import { handleValidation } from '@/utilities/handleValidation'
+import { handleSubmit } from '@/utilities/handleSubmit'
 
 function Page() {
   const { user, setUser } = useUser()
@@ -14,52 +16,24 @@ function Page() {
   const [hasLoggedIn, setHasLoggedIn] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  function handleValidation(value: string) {
-    const isValid = /^9\d{9}$/.test(value)
-    if (!value) {
-      setError('Phone number is required')
-    } else if (!isValid) {
-      setError('This is not a valid Iranian phone number')
-    } else {
-      setError('')
-    }
-  }
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
     setHasLoggedIn(false)
     setPhone(value)
-    handleValidation(value)
+    handleValidation({ value, setError })
   }
 
-  const handleSubmit = async () => {
-    setHasLoggedIn(true)
-    if (error) {
-      setError('you need to enter a valid Iranian phone number to continue!')
-      return
-    }
-    setLoading(true)
-    try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone }),
-      })
-
-      if (!res.ok) {
-        const { error } = await res.json()
-        setError(error || 'Something went wrong')
-        return
-      }
-      const user = await res.json()
-      localStorage.setItem('user', JSON.stringify(user))
-      setUser(user)
-      router.push('/dashboard')
-    } catch (e) {
-      setError(`Login failed. ${e}`)
-    }
+  const handleSubmits = () => {
+    handleSubmit({
+      phone,
+      error,
+      setError,
+      setLoading,
+      setUser,
+      setHasLoggedIn,
+      router,
+    })
   }
-
   return (
     <form className={styles.centerForm}>
       <Input
@@ -67,10 +41,9 @@ function Page() {
         value={phone}
         onChange={handleChange}
         error={error}
-        placeholder={'like: 913 ...'}
       />
 
-      <Button handleSubmit={handleSubmit} loading={loading} />
+      <Button handleSubmit={handleSubmits} loading={loading} />
     </form>
   )
 }

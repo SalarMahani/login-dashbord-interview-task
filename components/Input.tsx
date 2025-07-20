@@ -4,7 +4,6 @@ import styles from '../styles/Input.module.scss'
 
 type InputPropsType = {
   label: string
-  placeholder?: string
   error?: string
   type?: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -13,7 +12,6 @@ type InputPropsType = {
 
 function Input({
   label,
-  placeholder,
   error,
   type = 'text',
   onChange,

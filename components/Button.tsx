@@ -9,7 +9,6 @@ type ButtonPropsType = {
 function Button({ handleSubmit, loading }: ButtonPropsType) {
   return (
     <div className={styles.ButtonContainer}>
-      {/*<Spinner />*/}
       {loading ? (
         <Spinner />
       ) : (
