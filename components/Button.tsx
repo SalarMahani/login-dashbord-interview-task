@@ -1,3 +1,5 @@
+import styles from '../styles/Button.module.scss'
+
 type ButtonPropsType = {
   handleSubmit: () => void
   error: string
@@ -6,10 +8,13 @@ type ButtonPropsType = {
 
 function Button({ handleSubmit, error, hasLoggedIn }: ButtonPropsType) {
   return (
-    <>
-      <div onClick={handleSubmit}>login</div>
-      {hasLoggedIn && error && <span>{error}</span>}
-    </>
+    <div className={styles.ButtonContainer}>
+      <div onClick={handleSubmit} className={styles.Button}>
+        <span className={styles.span}>Login</span>
+      </div>
+      {/*<span className={styles.span}>{hasLoggedIn && error ? error : ''}</span>*/}
+      {/*{&& <span>{error}</span>}*/}
+    </div>
   )
 }
 

@@ -1,6 +1,7 @@
 'use client'
 import { useUser } from '@/context/UserContext'
 import { useRouter } from 'next/navigation'
+import styles from '../styles/signOutButton.module.scss'
 
 function SignOutButton() {
   const { setUser } = useUser()
@@ -14,7 +15,11 @@ function SignOutButton() {
     router.push('/')
   }
 
-  return <button onClick={handleSignOut}>signOut</button>
+  return (
+    <div onClick={handleSignOut} className={styles.Button}>
+      signOut
+    </div>
+  )
 }
 
 export default SignOutButton

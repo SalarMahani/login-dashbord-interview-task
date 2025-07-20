@@ -1,0 +1,9 @@
+@use "styles/variable" as *;
+
+.layoutBackground {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  background-color: $dark-v1-color;
+}

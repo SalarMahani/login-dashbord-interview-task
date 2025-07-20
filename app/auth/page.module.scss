@@ -1,0 +1,11 @@
+@use "styles/variable" as *;
+
+.centerForm {
+  display: flex;
+  flex-direction: row;
+  width: 60rem;
+  height: auto;
+  margin: auto;
+  font-size: 1.5rem;
+}
+

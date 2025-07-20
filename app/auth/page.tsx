@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Button from '@/components/Button'
 import { useUser } from '@/context/UserContext'
 import { useRouter } from 'next/navigation'
+import styles from './page.module.scss'
 
 function Page() {
   const { user, setUser } = useUser()
@@ -59,7 +60,7 @@ function Page() {
   }
 
   return (
-    <div>
+    <form className={styles.centerForm}>
       <Input
         label={'phone number'}
         value={phone}
@@ -73,7 +74,7 @@ function Page() {
         error={error}
         hasLoggedIn={hasLoggedIn}
       />
-    </div>
+    </form>
   )
 }
 

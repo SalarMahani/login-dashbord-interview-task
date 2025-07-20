@@ -1,0 +1,27 @@
+@use "./variable" as *;
+
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //width: fit-content;
+  //height: 2rem;
+  //padding: 1rem 1rem;
+  cursor: pointer;
+  transition: all 1s;
+  font-weight: bold;
+  //margin: 1rem;
+  overflow: hidden;
+  //position: relative;
+  padding: 2rem 1.5rem;
+  color: $yello-color;
+  letter-spacing: 0.3rem;
+  border: 1px solid $yello-color;
+}
+
+.Button:hover {
+  background-color: $yello-color;
+  color: $dark-v1-color;
+  border: none;
+  letter-spacing: normal;
+}

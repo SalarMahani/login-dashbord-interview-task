@@ -1,6 +1,9 @@
 import { UserProvider } from '@/context/UserContext'
+import styles from './layout.module.scss'
+import '../styles/globals.scss'
+import { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     template: 'home/ %s ',
     default: 'home',
@@ -15,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={styles.layoutBackground}>
         <UserProvider>{children}</UserProvider>
       </body>
     </html>
