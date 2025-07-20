@@ -17,7 +17,7 @@ function SignOutButton() {
 
   return (
     <div onClick={handleSignOut} className={styles.Button}>
-      signOut
+      signout
     </div>
   )
 }
