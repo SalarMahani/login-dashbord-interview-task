@@ -1,7 +1,84 @@
+//@use "variable" as *;
+//
+//.inputContainer {
+//  width: 100%;
+//  position: relative;
+//}
+//
+//.formInput {
+//  width: 100%;
+//  font-size: 1.5rem;
+//  padding: 2rem;
+//  background-color: #7B8B9AFF;
+//  transition: all 0.3s;
+//  color: $dark-v1-color;
+//
+//  &::placeholder {
+//    color: $dark-v1-color;
+//  }
+//
+//  &:placeholder-shown + .formLabel {
+//    opacity: 0;
+//    visibility: hidden;
+//    transform: translateY(-4rem);
+//  }
+//
+//  // Autofill background fix
+//  &:-webkit-autofill {
+//    transition: background-color 9999s ease-in-out 0s;
+//    background-color: #7B8B9AFF !important;
+//  }
+//}
+//
+//.formLabel {
+//  font-size: 1.2rem;
+//  font-weight: 700;
+//  margin-left: 1rem;
+//  margin-top: 0.7rem;
+//  display: block;
+//  transition: all 0.3s;
+//  color: $white-color;
+//}
+//
+//.falseBorder {
+//  outline: none;
+//  border-bottom: 3px solid $red-color;
+//}
+//
+//.correctBorder {
+//  outline: none;
+//  border-bottom: 4px solid $green-color;
+//}
+//
+//.errorColor {
+//  color: $red-color;
+//}
+//
+//.correctColor {
+//  color: $green-color;
+//}
+//
+//.span {
+//  display: block;
+//  position: absolute;
+//  font-size: 1.3rem;
+//  transform: translateY(-2rem);
+//}
+//
+
 @use "variable" as *;
 
 .inputContainer {
   width: 100%;
+  position: relative;
+
+  @media (max-width: $breakpoint-sm) {
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //margin: 0 auto;
+    //padding: 0 1rem;
+  }
 }
 
 .formInput {
@@ -9,22 +86,53 @@
   font-size: 1.5rem;
   padding: 2rem;
   background-color: #7B8B9AFF;
-  //border: none;
-  //border-bottom: 3px solid transparent;
   transition: all 0.3s;
-  color: $dark-v1-color
+  color: $dark-v1-color;
+
+  &::placeholder {
+    color: $dark-v1-color;
+  }
+
+  &:placeholder-shown + .formLabel {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+  &:-webkit-autofill {
+    transition: background-color 9999s ease-in-out 0s;
+    background-color: #7B8B9AFF !important;
+  }
+
+  // Small screen adjustments
+  @media (max-width: $breakpoint-md) {
+    //padding: 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    //padding: 1rem;
+    font-size: 1rem;
+    width: 95%;
+    //padding: 1rem;
+    //margin: 0 1rem;
+  }
 }
 
-.formInput::placeholder {
-  color: $dark-v1-color
-}
+.formLabel {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+  color: $white-color;
 
-.formInput:-webkit-autofill {
-  // with this trick we can set background color
-  transition: background-color 9999s ease-in-out 0s;
-  background-color: #7B8B9AFF !important;
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
 }
-
 
 .falseBorder {
   outline: none;
@@ -48,22 +156,10 @@
   display: block;
   position: absolute;
   font-size: 1.3rem;
-  //color: $red-color;
-  transform: translateY(-2rem);
-}
+  transform: translateY(-3rem);
 
-.formLabel {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-left: 1rem;
-  margin-top: 0.7rem;
-  display: block;
-  transition: all 0.3s;
-  color: $white-color
-}
-
-.formInput:placeholder-shown + .formLabel {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-4rem);
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.4rem;
+    transform: translateY(-3rem);
+  }
 }

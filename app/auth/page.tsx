@@ -12,7 +12,7 @@ function Page() {
   const [phone, setPhone] = useState('')
   const [error, setError] = useState('Phone number is required')
   const [hasLoggedIn, setHasLoggedIn] = useState(false)
-  console.log('user', user)
+  const [loading, setLoading] = useState(false)
 
   function handleValidation(value: string) {
     const isValid = /^9\d{9}$/.test(value)
@@ -38,6 +38,7 @@ function Page() {
       setError('you need to enter a valid Iranian phone number to continue!')
       return
     }
+    setLoading(true)
     try {
       const res = await fetch('/api/login', {
         method: 'POST',
@@ -69,11 +70,7 @@ function Page() {
         placeholder={'like: 913 ...'}
       />
 
-      <Button
-        handleSubmit={handleSubmit}
-        error={error}
-        hasLoggedIn={hasLoggedIn}
-      />
+      <Button handleSubmit={handleSubmit} loading={loading} />
     </form>
   )
 }

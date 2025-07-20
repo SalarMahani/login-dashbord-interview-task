@@ -4,6 +4,7 @@ import SignOutButton from '@/components/signOutButton'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './page.module.scss'
+import Spinner from '@/components/Spinner'
 
 export default function DashboardPage() {
   const { user } = useUser()
@@ -25,7 +26,7 @@ export default function DashboardPage() {
           <SignOutButton />
         </div>
       ) : (
-        <p>Loading...</p>
+        <Spinner />
       )}
     </div>
   )

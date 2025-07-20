@@ -1,0 +1,25 @@
+@use "variable" as *;
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  margin-left: 2rem;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 5px solid transparent;
+  border-top: 5px solid $green-color;
+  border-right: 5px solid $yello-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

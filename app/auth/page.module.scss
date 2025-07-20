@@ -3,9 +3,22 @@
 .centerForm {
   display: flex;
   flex-direction: row;
-  width: 60rem;
+  width: 100vh;
   height: auto;
   margin: auto;
   font-size: 1.5rem;
 }
 
+@media (max-width: $breakpoint-md) {
+  .centerForm {
+    //width: 20%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .centerForm {
+    flex-direction: column;
+    //width: 60%;
+  }
+}
